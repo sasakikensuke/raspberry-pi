@@ -1,9 +1,9 @@
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 import argparse
 import gspread
 
 SCOPE = [
-    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive",
 ]
 
@@ -14,7 +14,7 @@ DEFAULT_SHEET_INDEX = 0
 
 class SpreadSheet(object):
     def __init__(self, key_path, spread_sheet_id):
-        credentials = ServiceAccountCredentials.from_json_keyfile_name(
+        credentials = Credentials.from_service_account_file(
             key_path, SCOPE)
 
         self.sheet_client = gspread.authorize(credentials).open_by_key(spread_sheet_id)
