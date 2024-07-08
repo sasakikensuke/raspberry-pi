@@ -15,7 +15,7 @@ DEFAULT_SHEET_INDEX = 0
 class SpreadSheet(object):
     def __init__(self, key_path, spread_sheet_id):
         credentials = Credentials.from_service_account_file(
-            key_path, SCOPE)
+            key_path, scopes=SCOPE)
 
         self.sheet_client = gspread.authorize(credentials).open_by_key(spread_sheet_id)
 
